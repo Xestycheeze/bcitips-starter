@@ -5,6 +5,8 @@ export default {
   async findAll() {
     // TODO: get ahold of the db using readDb();
     // TODO: return the tips from the db
+    const db = await readDb();
+    return db.tips
   },
 
   async create({ title, userId }) {
