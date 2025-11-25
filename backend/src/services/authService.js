@@ -34,7 +34,7 @@ export default {
             profilePicture: profilePicture,
     }
     db.users.push(newUser);
-    await writeDb();
+    await writeDb(db);
     return {
       id: newUser.id,
       username: newUser.username,
