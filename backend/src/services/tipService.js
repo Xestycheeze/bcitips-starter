@@ -30,6 +30,15 @@ export default {
     // TODO: otherwise, set the found tip's title to the incoming title
     // TODO: write changes to database with await writeDb(db)
     // TODO: return true
+      const db = await readDb();
+      const tipToUpdate = db.tips.find(tip => tip.id === id && tip.userId === userId);
+      if (!tipToUpdate) {
+          return false;
+      } else {
+          Object.assign(tipToUpdate, {title: title});
+          await writeDb(db);
+          return true;
+      }
   },
 
   async remove({ id, userId }) {
