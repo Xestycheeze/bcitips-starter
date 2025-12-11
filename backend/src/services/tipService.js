@@ -48,5 +48,19 @@ export default {
     // TODO: otherwise, use splice to delete from db.tips the tip based on the index
     // TODO: write changes to database with await writeDb(db)
     // TODO: return true
+      let idx = -1
+      const db = await readDb();
+      for (let i=0; i<db.tips.length; i++) {
+          if (db.tips[i].id === id && db.tips[i].userId === userId) {
+              idx = i;
+              break;
+          }
+      }
+      if (idx === -1) {
+          return false;
+      }
+      db.tips.splice(idx, 1);
+      await writeDb(db);
+      return true;
   },
 };
